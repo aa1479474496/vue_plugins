@@ -1,0 +1,18 @@
+@import "config";
+
+
+@mixin b($block) {
+  $B: $namespace+'-'+$block !global;
+
+  .#{$B} {
+    @content;
+  }
+}
+
+@mixin when($t) {
+  @at-root {
+    &.#{$state-prefix + $t} {
+      @content;
+    }
+  }
+}

@@ -1,0 +1,46 @@
+
+@import "mixins/config.scss";
+
+@mixin b($block) {
+  $B: $namespace+'-'+$block !global;
+
+  .#{$B} {
+    @content;
+  }
+}
+
+@mixin e($element) {
+  $selector: &;
+  $currentSelector: "";
+  @each $unit in $element {
+    $currentSelector: #{$currentSelector + "." + $B + $element-separator + $unit + ","};
+    @debug $currentSelector;
+  }
+
+  // @at-root {
+  //   #{$selector} {
+  //     #{$currentSelector} {
+  //       @content;
+  //     }
+  //   }
+  // }
+
+  @at-root {
+    #{$selector} {
+      #{$currentSelector} {
+        @content;
+      }
+    }
+  }
+}
+
+@include b(input-number) {
+  position: relative;
+  width: 100px;
+  margin-bottom: 10px;
+
+  @include e((increase, decrease)) {
+    height: 100px;
+  }
+}
+

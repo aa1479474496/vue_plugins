@@ -2,29 +2,33 @@ var path = require('path')
 var webpack = require('webpack')
 var utils = require('./utils')
 
+function resolve(dir) {
+  return path.join(__dirname, '.', dir)
+}
+
 module.exports = {
-  // entry: './src/main.js',
-  // output: {
-  //   path: path.resolve(__dirname, './dist'),
-  //   publicPath: '/dist/',
-  //   filename: 'build.js'
-  // },
+  entry: './src/main.js',
+  output: {
+    path: path.resolve(__dirname, './dist'),
+    publicPath: '/dist/',
+    filename: 'build.js'
+  },
 
   // entry: './src/lib/print1/index.js', // 打包发布时入口
   // entry: {
   //   print1: './src/lib/print1/index.js',
   //   print2: './src/lib/print2/index.js'
   // },
-  entry: utils.getEntries('./src/lib/**/*.js'),
-  output: {
-    path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
-    // filename: 'build.js', // 打包后输出的文件名
-    filename: 'vue-[name].js', // 我们可不想打包后叫build 多low啊 起一个与项目相对应的
-    library: '[name]', // library指定的就是你使用require时的模块名，这里便是require("PayKeyboard")
-    libraryTarget: 'umd', //libraryTarget会生成不同umd的代码，例如可以只是commonjs标准的，也可以是指amd标准的，也可以只是通过script标签引入的。
-    umdNamedDefine: true // 会对 UMD 的构建过程中的 AMD 模块进行命名。否则就使用匿名的 define。
-  },
+  // entry: utils.getEntries('./src/lib/**/*.js'),
+  // output: {
+  //   path: path.resolve(__dirname, './dist'),
+  //   publicPath: '/dist/',
+  //   // filename: 'build.js', // 打包后输出的文件名
+  //   filename: 'vue-[name].js', // 我们可不想打包后叫build 多low啊 起一个与项目相对应的
+  //   library: '[name]', // library指定的就是你使用require时的模块名，这里便是require("PayKeyboard")
+  //   libraryTarget: 'umd', //libraryTarget会生成不同umd的代码，例如可以只是commonjs标准的，也可以是指amd标准的，也可以只是通过script标签引入的。
+  //   umdNamedDefine: true // 会对 UMD 的构建过程中的 AMD 模块进行命名。否则就使用匿名的 define。
+  // },
 
 
   // output: {
@@ -44,7 +48,11 @@ module.exports = {
           'vue-style-loader',
           'css-loader'
         ],
-      },      {
+      },
+      {
+        test: /\.scss$/,
+        loaders: ["vue-style-loader", "css-loader", "sass-loader"]
+      }, {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
@@ -69,14 +77,16 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': resolve('src'),
     },
     extensions: ['*', '.js', '.vue', '.json']
   },
   devServer: {
     historyApiFallback: true,
     noInfo: true,
-    overlay: true
+    overlay: true,
+    open: false
   },
   performance: {
     hints: false
