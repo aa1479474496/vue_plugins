@@ -1,0 +1,54 @@
+$color:green;
+
+.test {
+  color: $color;
+}
+.main {
+  p {
+    color: #00ff00;
+  }
+  .redbox {
+    color: skyblue;
+    font: {
+      size: 1in;
+      weight: bold;
+    }
+  }
+}
+
+@mixin test-message($selector) {
+  #{$selector} {
+    background: skyblue;
+  }
+}
+
+@include test-message('.a');
+
+.error {
+  margin-bottom: 10px;
+  border: 1px solid #f00;
+  background-color: #fdd;
+}
+
+.seriousError {
+  @extend .error;
+  border-width: 3px;
+}
+
+
+.hoverlink {
+  @extend a:hover;
+}
+.comment a.user:hover {
+  font: {
+    weight: bold;
+  }
+}
+
+.testname {
+  @extend .testmain
+}
+
+.t .testmain {
+  color: skyblue;
+}

@@ -2,6 +2,8 @@
   <div id="app">
     <img src="./assets/logo.png">
     <div v-repeat-click="increase">test v-repeat-click</div>
+    <print1></print1>
+    <icon name="error" styleObj="font-size: 24px;"/>
     <router-view></router-view>
   </div>
 </template>
@@ -19,7 +21,8 @@ export default {
   },
   data() {
     return {
-      msg: "Welcome to Your Vue.js App"
+      msg: "Welcome to Your Vue.js App",
+      Success: 'info'
     };
   },
   mounted() {

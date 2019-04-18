@@ -39,3 +39,13 @@ $--message-success-color: $--color-success !default;
 $--message-info-color: $--color-info !default;
 $--message-warning-color: $--color-warning !default;
 $--message-danger-color: $--color-danger !default;
+
+
+/* Color
+---------------------------- */
+$--color-white: #fff !default;
+$--color-success: #67c23a !default;
+
+$--color-success-light: mix($--color-white, $--color-success, 80%) !default;
+
+$--color-success-lighter: mix($--color-white, $--color-success, 90%) !default;

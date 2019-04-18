@@ -17,6 +17,7 @@ export default {
       console.log('open')
       this.$message({
         message: 'open message',
+        center: true,
         onClose(el) {
           console.log('el:', el)
         }

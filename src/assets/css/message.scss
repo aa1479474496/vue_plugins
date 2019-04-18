@@ -1,54 +1,47 @@
-$color:green;
+@import "mixins/mixins";
+@import "mixins/var";
 
-.test {
-  color: $color;
-}
-.main {
-  p {
-    color: #00ff00;
+@include b(message) {
+  min-width: $--message-min-width;
+  box-sizing: border-box;
+  border-radius: $--border-radius-base;
+  border-width: $--border-width-base;
+  border-style: $--border-style-base;
+  border-color: $--border-color-lighter;
+  position: fixed;
+  left: 50%;
+  top: 20px;
+  transform: translateX(-50%);
+  background-color: $--message-background-color;
+  transition: opacity 0.3s, transform .4s;
+  overflow: hidden;
+  padding: 15px 15px 15px 20px;
+
+  display: flex;
+  align-items: center;
+
+  @include when(center) {
+    justify-content: center;
   }
-  .redbox {
-    color: skyblue;
-    font: {
-      size: 1in;
-      weight: bold;
-    }
+
+  @include m(success) {
+    background-color: $--color-success-lighter;
+    border-color: $--color-success-light;
+
+    color: $--message-success-color;
   }
+
 }
 
-@mixin test-message($selector) {
-  #{$selector} {
-    background: skyblue;
-  }
-}
-
-@include test-message('.a');
-
-.error {
-  margin-bottom: 10px;
-  border: 1px solid #f00;
-  background-color: #fdd;
-}
-
-.seriousError {
-  @extend .error;
-  border-width: 3px;
-}
-
-
-.hoverlink {
-  @extend a:hover;
-}
-.comment a.user:hover {
-  font: {
-    weight: bold;
+@include b(message-fade) {
+  &-enter,
+  &-leave-active {
+    opacity: 0;
+    transform: translate(-50%, -100%);
   }
 }
 
-.testname {
-  @extend .testmain
-}
 
-.t .testmain {
-  color: skyblue;
-}
+
+
+
