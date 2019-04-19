@@ -7,24 +7,45 @@
       center ? 'is-center' : ''
       ]" 
       v-show="visible">
-      {{message}}
+      <i :class="iconClass" v-if="iconClass"></i>
+      <icon :name="typeClass" v-else/>
+      <slot>
+        <p>
+          {{message}}
+        </p>
+      </slot>
     </div>
   </transition>
 </template>
 
 <script>
+const typeMap = {
+  success: 'success',
+  info: 'info',
+  warning: 'warning',
+  error: 'error'
+}
 export default {
   data() {
     return {
       visible: false,
       message: '',
-      duration: 30000,
+      duration: 3000,
       timer: null,
       closed: false,
       type: 'success',
       iconClass: ''
     };
   },
+
+  computed: {
+    typeClass() {
+      return this.type && !this.iconClass
+        ? `${typeMap[this.type]}`
+        : ''
+    }
+  },
+
   mounted() {
     console.log("mounted");
     this.startTimer();

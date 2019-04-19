@@ -14,23 +14,12 @@
   $currentSelector: "";
   @each $unit in $element {
     $currentSelector: #{$currentSelector + "." + $B + $element-separator + $unit + ","};
-    @debug $currentSelector;
   }
 
-  // @at-root {
-  //   #{$selector} {
-  //     #{$currentSelector} {
-  //       @content;
-  //     }
-  //   }
-  // }
-
   @at-root {
-    #{$selector} {
       #{$currentSelector} {
         @content;
-      }
-    }
+      } 
   }
 }
 
@@ -43,4 +32,31 @@
     height: 100px;
   }
 }
+
+@mixin src($name) {
+  $currentSelector: "";
+  @each $unit in $name {
+    $selector: #{$currentSelector + "." + $B + $element-separator + $unit + ","};
+    $t: #{'url(../images/temp/' + $unit + '.png) no-repeat center'};
+    @at-root {  
+      #{$selector} {
+        background: $t;
+        background-size: contain; 
+      }
+    }
+  } 
+}
+
+@include b(test) {
+ 
+  @include e((qrcode, person)) {
+    display: inline-block;
+    width: 16px;
+    height: 16px; 
+    margin-right: 10px;
+  }
+  @include src((qrcode, person))
+}
+
+
 

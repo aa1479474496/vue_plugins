@@ -16,8 +16,10 @@ export default {
     open() {
       console.log('open')
       this.$message({
+         duration: 30000,
         message: 'open message',
         center: true,
+        // iconClass: 'zz-test__qrcode',
         onClose(el) {
           console.log('el:', el)
         }
