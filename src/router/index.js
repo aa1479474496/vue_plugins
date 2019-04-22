@@ -7,6 +7,7 @@ const Message = () => import('@/views/message')
 
 
 export default new VueRouter({
+  mode: 'history',
   routes: [
     {
       path: '/',

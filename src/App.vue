@@ -22,7 +22,7 @@ export default {
   data() {
     return {
       msg: "Welcome to Your Vue.js App",
-      Success: 'info'
+      Success: 'info',
     };
   },
   mounted() {
@@ -36,7 +36,7 @@ export default {
   methods: {
     increase() {
       console.log("increase");
-    }
+    },
   }
 };
 </script>
