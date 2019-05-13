@@ -103,6 +103,7 @@ button {
 
 @include b(button) {
   width: 100px;
+  height: 10px;
   // @include e(('body', 'header')) {
   //   padding: 10px;
   //   @include m(danger) {
